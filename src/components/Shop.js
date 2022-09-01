@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Item from './Item';
 
 const Shop = () => {
 
@@ -38,9 +39,11 @@ const Shop = () => {
     return (
         <div>
             <h1>Shop Page</h1>
-            {items.map((item) => (
-                <h3 key={item.id}>{item.name}</h3>
-            ))}
+            <div className="cards">
+                {items.map((item) => (
+                    <Item key={item.id} item={item}/>
+                ))}
+            </div>
 
         </div>
     );
