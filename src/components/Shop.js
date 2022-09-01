@@ -31,7 +31,6 @@ const Shop = () => {
             const response = await data.json();
             items = items.concat(response);
         }
-        console.log(items);
         setItems(items);
         
     }

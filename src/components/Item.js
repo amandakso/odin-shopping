@@ -1,6 +1,7 @@
 import React from "react";
 
 const Item = (props) => {
+    console.log(props);
     const item = props.item;
     const image = item.sprites.default;
     return (
