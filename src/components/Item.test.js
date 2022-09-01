@@ -1,6 +1,7 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, getByDisplayValue } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import userEvent from "@testing-library/user-event";
 import Item from "./Item";
 
 const mockItem = {
@@ -13,7 +14,7 @@ const mockItem = {
 };
 
 
-describe("Item component", () => {
+describe("Item Info", () => {
     it ("renders correct item name", () => {
         const{ getByText } = render(<Item key={mockItem.id} item={mockItem} />);
         expect(getByText(/great-ball/i)).toBeDefined();
@@ -29,3 +30,29 @@ describe("Item component", () => {
     });
 })
 
+describe("Item Amount", () => {
+    it ("adds 1 with addItem button", () => {
+        const{ getByRole } = render(<Item key={mockItem.id} item={mockItem} />);
+        const add = screen.getByRole("button", {name: "+"});
+        const input = screen.getByDisplayValue("0");
+        userEvent.click(add);
+        expect(input.value).toBe("1");
+    });
+    it ("subtracts 1 with subtractItem button", () => {
+        const{ getByRole } = render(<Item key={mockItem.id} item={mockItem} />);
+        const add = screen.getByRole("button", {name: "+"});
+        const subtract = screen.getByRole("button", {name: "-"})
+        const input = screen.getByDisplayValue("0");
+        userEvent.click(add);
+        userEvent.click(add);
+        userEvent.click(add);
+        userEvent.click(subtract);
+        expect(input.value).toBe("2");
+    });
+    it ("changes amount quantity when user types input", () => {
+        const{ getByRole } = render(<Item key={mockItem.id} item={mockItem} />);
+        const input = screen.getByDisplayValue("0");
+        userEvent.type(input, "50");
+        expect(input.value).toMatch(/50/i);
+    });
+})

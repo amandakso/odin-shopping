@@ -34,7 +34,7 @@ const Item = (props) => {
             <div>Cost: {item.cost}</div>
             <form>
                 <button onClick={subtractItem}>-</button>
-                <input className={item.name}type="number" value={amount} onChange={handleChange} />
+                <input className={item.name}type="number" placeholder="0" value={amount} onChange={handleChange} />
                 <button onClick={addItem}>+</button>
                 <button onClick={addToCart}>Add to Cart</button>
             </form>
