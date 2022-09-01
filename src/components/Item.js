@@ -22,10 +22,6 @@ const Item = (props) => {
         setAmount(findItem.value);
     }
 
-    const addToCart = (e) => {
-        e.preventDefault();
-        console.log("add to cart");
-    }
 
     return (
         <div className="card">
@@ -36,7 +32,7 @@ const Item = (props) => {
                 <button onClick={subtractItem}>-</button>
                 <input className={item.name}type="number" placeholder="0" value={amount} onChange={handleChange} />
                 <button onClick={addItem}>+</button>
-                <button onClick={addToCart}>Add to Cart</button>
+                <button name={item.id} value ={amount} onClick={props.onClick}>Add to Cart</button>
             </form>
         </div>
     );

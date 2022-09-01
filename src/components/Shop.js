@@ -4,6 +4,7 @@ import Item from './Item';
 const Shop = () => {
 
     const [items, setItems] = useState([]);
+    const [cart, setCart] = useState([]);
 
     useEffect(() => {
         const nums = [2, 3, 7, 25, 50, 88, 101, 194, 216]
@@ -31,8 +32,14 @@ const Shop = () => {
             const response = await data.json();
             items = items.concat(response);
         }
-        setItems(items);
-        
+        setItems(items);  
+    }
+
+    const addToCart = (e) => {
+        e.preventDefault();
+        console.log(e.target.value);
+        console.log(e.target.name);
+        console.log("add to cart");
     }
 
     return (
@@ -40,7 +47,7 @@ const Shop = () => {
             <h1>Shop Page</h1>
             <div className="cards">
                 {items.map((item) => (
-                    <Item key={item.id} item={item}/>
+                    <Item key={item.id} item={item} onClick={addToCart}/>
                 ))}
             </div>
 
