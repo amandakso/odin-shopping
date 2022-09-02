@@ -8,6 +8,7 @@ import './App.css';
 
 const App = () => {
 
+
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
 
@@ -17,7 +18,6 @@ const App = () => {
         id: e.target.name,
         quantity: e.target.value,
     };
-    console.log(cartItem.quantity);
     if (parseInt(cartItem.quantity) > 999 || parseInt(cartItem.quantity) < 0) {
         return;
     } else {
@@ -51,8 +51,8 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop onClick={addToCart} total={total}/>} />
-          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/shop" element={<Shop onClick={addToCart} total={total} cart={cart}/>} />
+          <Route path="/cart" element={<ShoppingCart onClick={addToCart} cart={cart}/>} />
         </Routes>
       </BrowserRouter>
     </div>

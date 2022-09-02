@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Item = (props) => {
     const [amount, setAmount] = useState(0);
     const item = props.item;
     const image = item.sprites.default;
     const itemName = (item.name);
+    const cart = props.cart;
+
+    useEffect(() => {
+        for (let i = 0; i < cart.length; i++) {
+            if (parseInt(cart[i].id) === item.id) {
+                setAmount(cart[i].quantity);
+            }
+        }  
+    }, [cart, item.id])
 
     const subtractItem = (e) => {
         e.preventDefault();

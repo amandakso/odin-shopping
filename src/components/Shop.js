@@ -5,12 +5,12 @@ import shoppingCart from './cart-variant.png';
 
 const Shop = (props) => {
     let total = props.total;
+    let cart = props.cart;
     let addToCart = props.onClick;
-
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        const nums = [2, 3, 7, 25, 50, 88, 101, 194, 216]
+        const nums = [2, 3, 7, 25, 50, 88, 101, 194, 216];
         /* for generating random numbers
         while (nums.length < 9) {
             let isNew = true;
@@ -29,7 +29,7 @@ const Shop = (props) => {
     }, []);
 
     const fetchItems = async (nums) => {
-        let items = []
+        let items = [];
         for (let i = 0; i < nums.length; i++) {
             const data = await fetch(`https://pokeapi.co/api/v2/item/${nums[i]}/`);
             const response = await data.json();
@@ -45,7 +45,7 @@ const Shop = (props) => {
             <h2><Link className="cart-link" to="/cart"><img src={shoppingCart} alt="shopping cart"></img>({total})</Link></h2>
             <div className="cards">
                 {items.map((item) => (
-                    <Item key={item.id} item={item} onClick={addToCart}/>
+                    <Item key={item.id} item={item} cart={cart} onClick={addToCart}/>
                 ))}
             </div>
 
