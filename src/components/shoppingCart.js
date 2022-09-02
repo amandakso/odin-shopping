@@ -1,9 +1,9 @@
 import React from "react";
 
-const shoppingCart = () => {
+const ShoppingCart = () => {
     return (
         <h1>Shopping Cart</h1>
     );
 };
 
-export default shoppingCart;
+export default ShoppingCart;

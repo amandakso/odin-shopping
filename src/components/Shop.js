@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import Item from './Item';
 import shoppingCart from './cart-variant.png';
 
-const Shop = () => {
+const Shop = (props) => {
+    let total = props.total;
+    let addToCart = props.onClick;
 
     const [items, setItems] = useState([]);
-    const [cart, setCart] = useState([]);
-    const [total, setTotal] = useState(0);
 
     useEffect(() => {
         const nums = [2, 3, 7, 25, 50, 88, 101, 194, 216]
@@ -38,40 +38,6 @@ const Shop = () => {
         setItems(items);  
     }
 
-    const addToCart = (e) => {
-        e.preventDefault();
-        let cartItem = {
-            id: e.target.name,
-            quantity: e.target.value,
-        };
-        console.log(cartItem.quantity);
-        if (parseInt(cartItem.quantity) > 999 || parseInt(cartItem.quantity) < 0) {
-            return;
-        } else {
-            let newCart = cart;
-            let setItem = false;
-            if (cart.length === 0) {
-                newCart = newCart.concat(cartItem);
-            } else {
-                for (let i = 0; i < newCart.length; i++) {
-                    if (newCart[i].id === cartItem.id) {
-                        newCart[i].quantity = cartItem.quantity;
-                        setItem = true;
-                    };
-                };
-                if (!setItem) {
-                    newCart = newCart.concat(cartItem);
-                }
-    
-            }
-            let num = 0;
-            for (let j = 0; j < newCart.length; j++) {
-                num = num + parseInt(newCart[j].quantity);
-            }
-            setCart(newCart);
-            setTotal(num);
-        }
-    }
 
     return (
         <div>
