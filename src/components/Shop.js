@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Item from './Item';
+import shoppingCart from './cart-variant.png';
 
 const Shop = () => {
 
@@ -74,7 +76,7 @@ const Shop = () => {
     return (
         <div>
             <h1>Shop Page</h1>
-            <h2>Cart: {total}</h2>
+            <h2><Link className="cart-link" to="/cart"><img src={shoppingCart} alt="shopping cart"></img>({total})</Link></h2>
             <div className="cards">
                 {items.map((item) => (
                     <Item key={item.id} item={item} onClick={addToCart}/>

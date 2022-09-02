@@ -24,6 +24,11 @@ nav {
   color: white;
 }
 
+.cart-link {
+  text-decoration: none;
+  color: black;
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;
