@@ -8,12 +8,20 @@ const Item = (props) => {
 
     const subtractItem = (e) => {
         e.preventDefault();
-        setAmount(amount => amount - 1);
+        if (amount - 1 < 0) {
+            return;
+        } else {
+            setAmount(amount => amount - 1);
+        }
     }
 
     const addItem = (e) => {
         e.preventDefault();
-        setAmount(amount => parseInt(amount) + 1);
+        if ((parseInt(amount) + 1) > 999) {
+            return;
+        } else {
+            setAmount(amount => parseInt(amount) + 1);
+        }
     }
 
     const handleChange = (e) => {
@@ -30,7 +38,7 @@ const Item = (props) => {
             <div>Cost: {item.cost}</div>
             <form>
                 <button onClick={subtractItem}>-</button>
-                <input className={item.name}type="number" placeholder="0" value={amount} onChange={handleChange} />
+                <input className={item.name} type="number" placeholder="0" min="0" max="999"value={amount} onChange={handleChange} />
                 <button onClick={addItem}>+</button>
                 <button name={item.id} value ={amount} onClick={props.onClick}>Add to Cart</button>
             </form>
