@@ -5,6 +5,7 @@ const Shop = () => {
 
     const [items, setItems] = useState([]);
     const [cart, setCart] = useState([]);
+    const [total, setTotal] = useState(0);
 
     useEffect(() => {
         const nums = [2, 3, 7, 25, 50, 88, 101, 194, 216]
@@ -37,14 +38,41 @@ const Shop = () => {
 
     const addToCart = (e) => {
         e.preventDefault();
-        console.log(e.target.value);
-        console.log(e.target.name);
-        console.log("add to cart");
+        let cartItem = {
+            id: e.target.name,
+            quantity: e.target.value,
+        };
+        let newCart = cart;
+        let setItem = false;
+        if (cart.length === 0) {
+            newCart = newCart.concat(cartItem);
+        } else {
+            for (let i = 0; i < newCart.length; i++) {
+                if (newCart[i].id === cartItem.id) {
+                    newCart[i].quantity = cartItem.quantity;
+                    setItem = true;
+                };
+            };
+            if (!setItem) {
+                newCart = newCart.concat(cartItem);
+            }
+
+        }
+        let num = 0;
+        for (let j = 0; j < newCart.length; j++) {
+            num = num + parseInt(newCart[j].quantity);
+            console.log(num);
+        }
+        setCart(newCart);
+        setTotal(num);
+        console.log(newCart);
+        console.log(num);
     }
 
     return (
         <div>
             <h1>Shop Page</h1>
+            <h2>Cart: {total}</h2>
             <div className="cards">
                 {items.map((item) => (
                     <Item key={item.id} item={item} onClick={addToCart}/>
