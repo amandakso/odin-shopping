@@ -42,7 +42,8 @@ const Shop = () => {
             id: e.target.name,
             quantity: e.target.value,
         };
-        if (parseInt(cartItem.quantity) > 999) {
+        console.log(cartItem.quantity);
+        if (parseInt(cartItem.quantity) > 999 || parseInt(cartItem.quantity) < 0) {
             return;
         } else {
             let newCart = cart;
