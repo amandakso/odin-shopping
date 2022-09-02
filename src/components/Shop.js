@@ -42,31 +42,32 @@ const Shop = () => {
             id: e.target.name,
             quantity: e.target.value,
         };
-        let newCart = cart;
-        let setItem = false;
-        if (cart.length === 0) {
-            newCart = newCart.concat(cartItem);
+        if (parseInt(cartItem.quantity) > 999) {
+            return;
         } else {
-            for (let i = 0; i < newCart.length; i++) {
-                if (newCart[i].id === cartItem.id) {
-                    newCart[i].quantity = cartItem.quantity;
-                    setItem = true;
-                };
-            };
-            if (!setItem) {
+            let newCart = cart;
+            let setItem = false;
+            if (cart.length === 0) {
                 newCart = newCart.concat(cartItem);
+            } else {
+                for (let i = 0; i < newCart.length; i++) {
+                    if (newCart[i].id === cartItem.id) {
+                        newCart[i].quantity = cartItem.quantity;
+                        setItem = true;
+                    };
+                };
+                if (!setItem) {
+                    newCart = newCart.concat(cartItem);
+                }
+    
             }
-
+            let num = 0;
+            for (let j = 0; j < newCart.length; j++) {
+                num = num + parseInt(newCart[j].quantity);
+            }
+            setCart(newCart);
+            setTotal(num);
         }
-        let num = 0;
-        for (let j = 0; j < newCart.length; j++) {
-            num = num + parseInt(newCart[j].quantity);
-            console.log(num);
-        }
-        setCart(newCart);
-        setTotal(num);
-        console.log(newCart);
-        console.log(num);
     }
 
     return (
