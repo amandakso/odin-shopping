@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Item from './Item';
 
 const ShoppingCart = (props) => {
@@ -28,7 +29,7 @@ const ShoppingCart = (props) => {
             <h1>Shopping Cart</h1>
             <div className="cards">
                 {shoppingItems.map((shoppingItem) => (
-                    <Item key={shoppingItem.id} item={shoppingItem} cart={cart} onClick={addToCart}/>
+                    <Link to={`/shop/${shoppingItem.id}`}><Item key={shoppingItem.id} item={shoppingItem} cart={cart} onClick={addToCart}/></Link>
                 ))}
             </div>
 

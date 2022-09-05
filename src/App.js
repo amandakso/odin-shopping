@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
 import ShoppingCart from "./components/ShoppingCart";
+import ItemDetails from "./components/ItemDetails";
 import './App.css';
 
 const App = () => {
@@ -59,6 +60,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop onClick={addToCart} total={total} cart={cart}/>} />
           <Route path="/cart" element={<ShoppingCart onClick={addToCart} cart={cart} items={items}/>} />
+          <Route path="/shop/:id" element={<ItemDetails />}/>
         </Routes>
       </BrowserRouter>
     </div>
