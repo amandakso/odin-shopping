@@ -29,7 +29,7 @@ const ShoppingCart = (props) => {
             <h1>Shopping Cart</h1>
             <div className="cards">
                 {shoppingItems.map((shoppingItem) => (
-                    <Link to={`/shop/${shoppingItem.id}`}><Item key={shoppingItem.id} item={shoppingItem} cart={cart} onClick={addToCart}/></Link>
+                    <Link key={shoppingItem.id} to={`/shop/${shoppingItem.id}`}><Item item={shoppingItem} cart={cart} onClick={addToCart}/></Link>
                 ))}
             </div>
 
