@@ -11,6 +11,7 @@ const App = () => {
 
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [items, setItems] = useState([]);
 
   const addToCart = (e) => {
     e.preventDefault();
@@ -41,8 +42,13 @@ const App = () => {
         for (let j = 0; j < newCart.length; j++) {
             num = num + parseInt(newCart[j].quantity);
         }
+        let currentItems = [];
+        for (let k = 0; k < newCart.length; k++) {
+          currentItems = currentItems.concat(newCart[k].id);
+        }
         setCart(newCart);
         setTotal(num);
+        setItems(currentItems)
     }
 }
   return (
@@ -52,7 +58,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop onClick={addToCart} total={total} cart={cart}/>} />
-          <Route path="/cart" element={<ShoppingCart onClick={addToCart} cart={cart}/>} />
+          <Route path="/cart" element={<ShoppingCart onClick={addToCart} cart={cart} items={items}/>} />
         </Routes>
       </BrowserRouter>
     </div>
