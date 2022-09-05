@@ -6,7 +6,6 @@ import shoppingCart from './cart-variant.png';
 const Shop = (props) => {
     let total = props.total;
     let cart = props.cart;
-    console.log(cart);
     let addToCart = props.onClick;
     const [items, setItems] = useState([]);
 
