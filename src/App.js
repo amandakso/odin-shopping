@@ -60,7 +60,6 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop onClick={addToCart} total={total} cart={cart}/>} />
           <Route path="/cart" element={<ShoppingCart onClick={addToCart} cart={cart} items={items}/>} />
-          <Route path="/shop/:id" element={<ItemDetails />}/>
         </Routes>
       </BrowserRouter>
     </div>

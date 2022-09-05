@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Item from './Item';
 
 const ShoppingCart = (props) => {
     const cart = props.cart;
+    console.log(cart);
     const addToCart = props.onClick;
     const items = props.items
-    const [shoppingItems, setShoppingItems] = useState([])
+    const [shoppingItems, setShoppingItems] = useState([]);
+
+
  
 
     useEffect(() => {
@@ -29,10 +31,9 @@ const ShoppingCart = (props) => {
             <h1>Shopping Cart</h1>
             <div className="cards">
                 {shoppingItems.map((shoppingItem) => (
-                    <Link key={shoppingItem.id} to={`/shop/${shoppingItem.id}`}><Item item={shoppingItem} cart={cart} onClick={addToCart}/></Link>
+                    <Item key={shoppingItem.id} item={shoppingItem} cart={cart} onClick={addToCart}/>
                 ))}
             </div>
-
         </div>
     );
 };

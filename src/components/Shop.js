@@ -45,7 +45,7 @@ const Shop = (props) => {
             <h2><Link className="cart-link" to="/cart"><img src={shoppingCart} alt="shopping cart"></img>({total})</Link></h2>
             <div className="cards">
                 {items.map((item) => (
-                    <Link key={item.id} to={`/shop/${item.id}`}><Item item={item} cart={cart} onClick={addToCart}/></Link>
+                    <Item key={item.id} item={item} cart={cart} onClick={addToCart}/>
                 ))}
             </div>
 
